@@ -1,0 +1,29 @@
+
+
+#- apt_key:
+    #url: "https://ftp-master.debian.org/keys/archive-key-6.0.asc"
+    #state: present
+
+#- apt_repository:
+    #repo: 'ppa:rael-gc/rvm'
+    #update_cache: yes
+    #state: present
+
+ 
+
+- name: install ruby and mysql
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - ruby
+    - ruby-dev
+    - make
+    - mysql-server
+
+- name: install gem with proper $PATH
+  gem:
+    name: rails
+    user_install: no
+- git:
+    repo: https://github.com/ehabzaki/blogOnRails.git
+    dest: /home/ehab/blog

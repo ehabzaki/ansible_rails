@@ -1,0 +1,9 @@
+- name: Provision a cafetria server "rails"
+  hosts: cafetria_local
+  remote_user: root
+  become_user: root
+
+  roles:
+    - rails
+  
+ 
