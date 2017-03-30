@@ -1,29 +1,22 @@
 
-
-#- apt_key:
-    #url: "https://ftp-master.debian.org/keys/archive-key-6.0.asc"
-    #state: present
-
-#- apt_repository:
-    #repo: 'ppa:rael-gc/rvm'
-    #update_cache: yes
-    #state: present
-
- 
-
-- name: install ruby and mysql
+- name: install gnupg2
+  become: yes
   apt:
     name: "{{ item }}"
   with_items:
-    - ruby
-    - ruby-dev
-    - make
-    - mysql-server
+    - gnupg2
+    - htop
+    - git-all
+    
+- name: ensure that GPG key for RVM is installed
+  command: gpg2 --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+  args:
+    creates: /root/.gnupg/secring.gpg
+- name: install rvm with ruby and rails
+  shell: "curl -sSL https://get.rvm.io | bash -s stable --rails"
+  args:
+    creates: /usr/local/rvm
 
-- name: install gem with proper $PATH
-  gem:
-    name: rails
-    user_install: no
 - git:
     repo: https://github.com/ehabzaki/blogOnRails.git
-    dest: /home/ehab/blog
+    dest: /home/vagrant/blog

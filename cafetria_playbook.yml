@@ -1,6 +1,6 @@
 - name: Provision a cafetria server "rails"
   hosts: cafetria_local
-  remote_user: root
+  remote_user: vagrant
   become_user: root
 
   roles:
