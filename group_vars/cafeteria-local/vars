@@ -1,6 +1,4 @@
 ---
 
-multiply: 1
 app_user: vagrant
 app_group: vagrant
-is_dir: true

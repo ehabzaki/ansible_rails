@@ -1,2 +1,11 @@
-[cafetria_local]
+
+
+[cafeteria-local]
 192.168.11.11
+
+[cafeteria-production]
+192.168.11.11
+
+[cafeteria:children]
+cafeteria-local
+cafeteria-production

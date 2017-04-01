@@ -1,0 +1,13 @@
+- name: provision cafetria
+  hosts: cafeteria-production
+  remote_user: vagrant
+  become_user: root
+  roles:
+    - DataBase
+    - RubyOnRails
+    - Clone
+    - Run
+
+
+    
+    

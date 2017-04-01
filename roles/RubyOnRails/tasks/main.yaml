@@ -1,5 +1,4 @@
-
-- name: install gnupg2
+- name: install dependencies
   become: yes
   apt:
     name: "{{ item }}"
@@ -7,16 +6,16 @@
     - gnupg2
     - htop
     - git-all
+    - curl
+    - imagemagick
+    - nodejs
     
-- name: ensure that GPG key for RVM is installed
+- name: GPG key for RVM is installed
   command: gpg2 --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
   args:
     creates: /root/.gnupg/secring.gpg
-- name: install rvm with ruby and rails
+
+- name: ruby and rails
   shell: "curl -sSL https://get.rvm.io | bash -s stable --rails"
   args:
-    creates: /usr/local/rvm
-
-- git:
-    repo: https://github.com/ehabzaki/blogOnRails.git
-    dest: /home/vagrant/blog
+    creates: /usr/local/rvm  

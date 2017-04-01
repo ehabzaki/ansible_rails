@@ -1,0 +1,5 @@
+
+- name: clone the project Code
+  git:
+    repo: https://github.com/ehabzaki/blogOnRails.git
+    dest: /home/vagrant/blog

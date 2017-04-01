@@ -1,0 +1,19 @@
+- name: run bundle install 
+  bundler:
+    chdir: /home/vagrant/blog
+    state: latest
+    clean: true
+    gemfile: /home/vagrant/blog/Gemfile
+    deployment_mode: yes
+    executable: ~/.rvm/gems/ruby-2.4.0/bin/bundle
+    
+     #exclude_groups: production
+
+#- name: run bundle
+  #shell: cd /root/cafeteria; bundle install --without production
+
+- name: db creation and migration
+  shell: rake db:create; rake db:migrate; 
+
+- name: run rails server
+  shell: rails s -b 0.0.0.0 &
